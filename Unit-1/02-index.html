@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <input type="text" ng-model="name" placeholder="What is your name?">
+    <h1>My name is: {{ name }} </h1>
+    <form>
+      <select name="multipleSelect" ng-model="dropdown">
+        <option selected value="Dogs">Dogs</option>
+        <option value="Cats">Cats</option>
+        <option value="DogsAndCats">Dogs and Cats</option>
+        <option value="Neither">Neither</option>
+      </select>
+    </form>
+    <br/>
+    <h3>I love {{dropdown}} <3</h3><br/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+  </body>
+</html>
