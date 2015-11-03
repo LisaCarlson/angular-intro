@@ -4,7 +4,7 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <input type="text" ng-model="name" placeholder="What is your name?">
+    <input type="text" ng-model="name" ng-init="name='Bojack'" placeholder="What is your name?">
     <h1>My name is: {{ name }} </h1>
     <form>
       <select name="multipleSelect" ng-model="dropdown">
