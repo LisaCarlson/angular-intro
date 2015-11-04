@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ greeting }} World</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+  </head>
+  <body>
+    <p>1+2={{1 + 2}}</p>
+    <p>My name is {{"BoJack" + " Horseman"}}</p>
+    <p>The array [99, 43, 22] is {{ [99,43,22].length }} items long.</p>
+    <p>{{3.14159265359 | currency : "€"}}</p>
+    <label>Please say something</label><br/>
+    <input type='text' ng-model='something'>
+    <p>Yelling: {{something | uppercase}}</p>
+    <p>Whispering: {{something | lowercase}}</p>
+    <h3>Numbers</h3>
+    <p>{{3.14159265359 | number:3}}</p>
+    <p>{{3.14159265359 | number:6}}</p>
+    <p>{{3.14159265359 | number:1}}</p>
+    <p>How many digits of pi do you want?</p>
+    <select ng-model="dropdown">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+    <p>Here you go! The first {{dropdown}} digits of pi</p>
+    <p>{{3.14159265359 | number: dropdown}}</p>
+    <br/>
+    <br/>
+    <h4>Super Useful Tip Calculator</h4>
+    <p>How much did your meal cost? <input type='text' ng-model='cost'></p>
+    <p>How much do you want to tip?</p>
+    <select ng-model='tip'>
+      <option value=".1">10%</option>
+      <option value=".15">15%</option>
+      <option value=".2">20%</option>
+    </select>
+    <h3>Subtotal: {{cost | currency}}</h3>
+    <h3>Tip: {{tip*cost | currency}}</h3>
+    <br/>
+    <br/>
+    <br/>
+    <h2>Mad Libs</h4>
+    <div ng-controller="MainController">
+      <h3>Please fill out the following:</h3>
+      <label>Boy's Name</label>
+      <input type='text' ng-model='boysName'>
+      <br/>
+      <label>Adjective</label>
+      <input type='text' ng-model='adjective'>
+      <br/>
+      <label>Plural Noun</label>
+      <input type='text' ng-model='pluralNoun'>
+      <br/>
+      <label>An insect, plural</label>
+      <input type='text' ng-model='insect'>
+      <br/>
+      <label>Plural Noun</label>
+      <input type='text' ng-model='pluralNoun2'>
+      <br/>
+      <label>A Verb Ending in s</label>
+      <input type='text' ng-model='verb'>
+      <br/>
+      <button ng-click="generate()">Generate!</button>
+      <div ng-show='show'>
+        <p>There once was a boy named {{boysName}}. He had {{adjective}} hair and loved {{pluralNoun}}. He even kept {{insect}} as pets! He really wanted to get {{pluralNoun2}} so he saved money by {{verb}}.</p>
+      </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <script src='scripts.js'></script>
+  </body>
+</html>

@@ -17,3 +17,28 @@ Dirty checking is a simple process that boils down to a very basic concept: It c
 They are not Handlebars. They are Angular bindings
 -Explain what two-way data binding is.
 Data-binding in Angular apps is the automatic synchronization of data between the model and view components.
+-What are Angular expressions?
+AngularJS expressions binds data to HTML the same way as the ng-bind directive. AngularJS will "output" data exactly where the expression is written. AngularJS expressions are much like JavaScript expressions: They can contain literals, operators, and variables.
+-What happens when you write invalid code in an expression?
+No error occurs, but you'll see the brackets appear
+-What are Angular filters? 
+Filters are simply bits of code that format data before displaying it.
+four built-in filters: lowercase, uppercase, number, json
+-What's the syntax for filters?
+{{expression | filter}}
+-Can you use more than one filter?
+Yes it's called chaining
+-What is a use case for a custom filter?
+can build a filter to manipulate an entire data set
+
+
+
+
+
+
+
+
+
+
+
+
