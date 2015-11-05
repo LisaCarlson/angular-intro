@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title></title>
+  <link rel='stylesheet' href='http://bootswatch.com/flatly/bootstrap.min.css'>
+  <link rel='stylesheet' href='style.css'>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+</head>
+<body>
+  <div class='container'>
+    <div ng-controller='MyController'>
+      <h3>The number is: {{number}}</h3>
+      <button class="btn btn-warning" ng-click="pickRandomNumber()">Pick Random Number</button>
+      <h3>Word Reverser</h3>
+      <input type='text' ng-model='word'>
+      <h4>Your word is: {{word}}</h4>
+      <button class="btn btn-danger" ng-click="reverseWord()">Reverse Word</button>
+      <div class="row">
+        <h1 class='text-center margin-top strong text-info'>Ping Pong Score Keeper</h1>
+        <div class="col-md-4 col-md-offset-1">
+          <div ng-model="player1" ng-disabled="gameOver" ng-class='{"btn-success": player1 == 11, "btn-danger": player2 == 11, "btn-primary": player1 < 11}' class="btn pong" ng-click="playPlayer1()">
+            <h3>Player 1</h3>
+            <h1 class='score'>{{player1}}</h1>
+            <h4 ng-show='isServing1'>Serving<h4>
+          </div>
+        </div>
+        <div class="col-md-4 col-md-offset-2">
+          <div class="pong btn" ng-disabled="gameOver" ng-class='{"btn-success": player1 == 11, "btn-danger": player1 == 11, "btn-warning": player2 < 11}' ng-click="playPlayer2()">
+            <h3>Player 2</h3>
+            <h1 class='score'>{{player2}}</h1>
+            <h4 ng-show='isServing2'>Serving<h4>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 col-md-offset-5">
+            <button id="reset" class='btn btn-default btn-lg' ng-click="reset()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src='app2.js'></script>
+</body>
+</html>
