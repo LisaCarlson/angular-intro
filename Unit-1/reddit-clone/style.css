@@ -29,6 +29,8 @@
 .glyphicon-thumbs-up, .glyphicon-thumbs-down {
   font-size: 20px;
   padding: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .glyphicon.btn:hover {
@@ -37,4 +39,17 @@
 
 .clear {
     clear: both;
+}
+
+.votes {
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.red {
+  color: #e74c3c;
+}
+
+.green {
+  color: #637d49;
 }
