@@ -61,7 +61,7 @@
             <button class="btn btn-primary margin-top">Add Post</button>
           </div>
         </div>
-        <div class="row" ng-repeat='post in posts'>
+        <div class="row margin-top" ng-repeat='post in posts'>
           <div class="col-md-12 post">
             <div class="row">
               <div class="col-md-3">
@@ -76,7 +76,7 @@
                  <p><i class="glyphicon glyphicon-calendar"></i> {{post.time}} | <i class="glyphicon glyphicon-comment"></i> {{post.comments.length}} <ng-pluralize count="post.comments.length"
                   when="{'0': 'comments', 
                           '1': 'comment', 
-                          'other': 'comments'}"></ng-pluralize> | </p>
+                          'other': 'comments'}"></ng-pluralize> | <i class="glyphicon glyphicon-pencil"></i> Add Comment</p>
               </div>
             </div>
 
