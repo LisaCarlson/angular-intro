@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="firstApp">
+<head>
+  <title></title>
+  <link rel='stylesheet' href='http://bootswatch.com/flatly/bootstrap.min.css'>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+</head>
+<body>
+  <div ng-controller="MyFirstController">
+    <h1>My name is: {{name}}</h1>
+    <input ng-model="name" type="text" placeholder="What is your name">
+  </div>
+  <div ng-controller="ExercisesController">
+    <h1>My favorite color is: <span class='bg-success'>{{FavColor}}</span></h1>
+    <h1 class='well'>Seconds in a Century: {{secondsInACentury | number}}</h1>
+    <h1 class='text-info'>Today's Date: {{rightNow | date :'fullDate'}}</h1>
+  </div>
+  <script src='app.js'></script>
+</body>
+</html>

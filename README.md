@@ -43,6 +43,16 @@ When no track by expression is provided, it is equivalent to tracking by the bui
 -How does ng-repeat handle duplicate data?
 The default tracking function (which tracks items by their identity) does not allow duplicate items in arrays. This is because when there are duplicates, it is not possible to maintain a one-to-one mapping between collection items and DOM elements.
 Use track by $index to handle duplicates
+-what is $scope?
+Scope is an object that refers to the application model. It is an execution context for expressions. Scopes are arranged in hierarchical structure which mimic the DOM structure of the application. Scopes can watch expressions and propagate events.
+-What are Angular modules?
+You can think of a module as a container for the different parts of your app – controllers, services, filters, directives, etc.
+-What's the syntax for defining a module?
+var myAppModule = angular.module('myApp', []); the empty array is the list of modules myApp depends on.
+-Why do we pass in $scope as an argument to controller functions?
+So that we can set properties on $scope to be used in the view
+-In Express, what are Angular controllers most analogous to?
+Controllers are similar to routes or to controllers folders in a standard MVC framework.. they define a certain scope for the data and view they are linked to. Routes call data, clean and define it in some way.. and them pass the data as an object to the view. Controllers in angular are similar, except they can be even more specific.. in that they can render multiple views on one page, while maintaining their own scope
 
 
 
