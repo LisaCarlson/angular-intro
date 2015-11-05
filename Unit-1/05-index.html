@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ greeting }} World</title>
+    <link rel='stylesheet' href='http://bootswatch.com/flatly/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+  </head>
+  <body>
+    <div class='container'>
+      <div ng-controller="MainController">
+        <ul>
+          <li ng-repeat="name in names">
+            {{name}}
+           </li>
+        </ul>
+        <ul>
+          <li ng-bind-html="symbol" ng-repeat="symbol in symbols">
+            {{symbol}}
+           </li>
+        </ul>
+        <ul>
+          <li ng-repeat="number in numbers track by $index">
+            {{number}}
+          </li>
+        </ul>
+        <ul>
+          <li ng-repeat="user in second">
+            {{user.name}}: {{user.age}}
+          </li>
+        </ul>
+        <ul>
+          <li ng-repeat="attr in third">
+            {{attr}}
+          </li>
+        </ul>
+      </div>
+        <div ng-show="3 + 4 == 5">
+          3 + 4 isn't 5, don't show
+        </div>
+
+        <div ng-show="3 + 4 == 7">
+          3 + 4 is 7, do show
+        </div>
+
+        <div ng-hide="3 + 4 == 5">
+            3 + 4 isn't 5, don't hide
+        </div>
+
+        <div ng-hide="3 + 4 == 7">
+          3 + 4 is 7, do hide
+        </div>
+      <!--Angular gives hidden elements a class of ng-hide which sets the display property to none with an important flag -->
+      <h2>Sign Up Page</h2>
+      <input ng-class='{danger: password.length < 6, success: password.length >= 6 }' type='password' ng-model='password'><br/>
+      <p ng-class='{danger: password.length < 6, success: password.length >= 6}'>Your password is {{password.length}} characters</p>
+      <button ng-show='password.length >= 6'>Sign Up!</button>
+      <p ng-show='password.length < 6'>Password invalid</p>
+      <br/>
+      <br/>
+      <br/>
+      <div ng-controller="MainController">
+        <div class='row'>
+          <div class='col-md-6 col-md-offset-4'>
+            <h1 class='text-info'>Camera Shop <small>   take a look...</small> </h1> 
+            <h3 class="strong text-danger">Sort By:</h3>
+            <select ng-model='option'>
+              <option value='rating'>Rating</option>
+              <option value='price'>Price</option>
+            </select>  
+          </div>
+          <div class="row">
+            <div ng-repeat='camera in cameras | orderBy: option' class="col-md-4 camera">
+              <div class="thumbnail">
+                <img ng-src="{{camera.image}}" alt="...">
+                <div class="caption">
+                  <h2>{{camera.title}}</h2>
+                  <h3 ng-hide='camera.onSale'>price: {{camera.price | currency}}</h3>
+                  <h3 ng-show='camera.onSale' class='text-warning'>price: {{camera.price | currency}} ON SALE! </h3>
+                  <h3>rating: {{camera.rating}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+   <script src='scripts2.js'></script>
+  </body>
+</html>

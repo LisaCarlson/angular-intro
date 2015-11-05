@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>{{ greeting }} World</title>
+    <link rel='stylesheet' href='http://bootswatch.com/journal/bootstrap.min.css'>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
   </head>
   <body>
@@ -19,7 +20,7 @@
     <p>{{3.14159265359 | number:6}}</p>
     <p>{{3.14159265359 | number:1}}</p>
     <p>How many digits of pi do you want?</p>
-    <select ng-model="dropdown">
+    <select ng-model="dropdown" ng-init="dropdown=0">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -28,7 +29,12 @@
       <option value="6">6</option>
       <option value="7">7</option>
     </select>
-    <p>Here you go! The first {{dropdown}} digits of pi</p>
+    <p>Here you go! The first {{dropdown}}
+    <ng-pluralize count="dropdown"
+                  when="{'0': 'digits of pi', 
+                          '1': 'digit of pi', 
+                          'other': 'digits of pi'}"></ng-pluralize>
+    </p>
     <p>{{3.14159265359 | number: dropdown}}</p>
     <br/>
     <br/>
