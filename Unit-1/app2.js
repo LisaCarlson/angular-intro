@@ -59,7 +59,6 @@ app.controller("MyController2", function ($scope) {
   $scope.addContact = function(){
     $scope.newContact = {name: $scope.newName, email: $scope.newEmail, phone: $scope.newPhone};
     $scope.contacts.push($scope.newContact);
-    console.log('click')
   }
 
   })
