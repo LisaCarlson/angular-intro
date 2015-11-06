@@ -4,6 +4,7 @@
   <title>Reddit Clone</title>
   <link rel='stylesheet' href='http://bootswatch.com/flatly/bootstrap.min.css'>
   <link rel='stylesheet' href='style.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css'>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
 </head>
@@ -25,7 +26,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <div class="navbar-form navbar-left">
-            <button ng-click="submitPost()" type="submit" class="btn btn-default">Submit Post</button>
+            <button ng-click="submitPost()" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Submit Post</button>
           </div>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -79,11 +80,16 @@
                  <h4>{{post.title}} | <i ng-click="post.votes = post.votes+1" class='glyphicon glyphicon-thumbs-up btn'></i> <i ng-click="post.votes = post.votes-1" class='glyphicon glyphicon-thumbs-down btn'></i> <span class='votes' ng-class='{red: post.votes < 0, green: post.votes > 0 }'>{{post.votes}}<span></h4>
                  <p class='pull-right text-warning'>By {{post.author}}</p>
                  <p class='clear'>{{post.description}}</p>
-                 <p><i class="glyphicon glyphicon-calendar"></i> {{post.time | date :'medium'}} | <i ng-click="showComments()" class="glyphicon glyphicon-comment btn"></i> {{post.comments.length}} <ng-pluralize count="post.comments.length"
+                 <p><i class="glyphicon glyphicon-calendar"></i> {{post.time | date :'medium'}} | <i ng-click='thisComment = !thisComment' class="glyphicon glyphicon-comment btn" ></i> {{post.comments.length}} <ng-pluralize count="post.comments.length"
                   when="{'0': 'comments', 
                           '1': 'comment', 
-                          'other': 'comments'}"></ng-pluralize> | <i class="glyphicon glyphicon-pencil btn"></i> Add Comment</p>
-                  <p ng-show="comments" ng-repeat='comment in post.comments'><strong>{{comment.author}}</strong> said <span class='text-info'>"{{comment.content}}"</span></p> 
+                          'other': 'comments'}"></ng-pluralize> | <i ng-click='commentForm = !commentForm' class="glyphicon glyphicon-pencil btn"></i> Add Comment</p>
+                  <p ng-show="thisComment" ng-repeat='comment in post.comments'><strong>{{comment.author}}</strong> said <span class='text-info'>"{{comment.content}}"</span></p>
+                  <form name="addComment" ng-show="commentForm" novalidate>
+                    <label> Name: <input ng-class='{commentInvalid: addComment.name.$invalid}' ng-model="commentAuthor" class="form-control" type="text" name="name" required> </label>
+                    <label> Comment: <input ng-class='{commentInvalid: addComment.comment.$invalid}' ng-model="commentBody" class="form-control" type="text" name="comment" required> </label>
+                    <button ng-disabled="addComment.$invalid" ng-click="submitComment()" class="btn btn-warning">Submit</button>
+                  </form> 
               </div>
             </div>
 
