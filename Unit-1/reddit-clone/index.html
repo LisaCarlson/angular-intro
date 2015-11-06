@@ -42,23 +42,29 @@
               </ul>
             </li>
           </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+        </div>
+      </div>
     </nav>
   
     <div class="container">
       <div ng-show='showForm' class="row margin-bottom">
         <div class="col-md-6 col-md-offset-3">
+          <form name="postForm" novalidate>
             <h3 class="text-center text-info">Add a Post</h3>
             <label for="title" class="margin-top">Title</label>
-            <input ng-model="title" type="text" class="form-control" id="title" placeholder="title...">
+            <input ng-class='{invalid: postForm.title.$error.required}' name="title" ng-model="title" type="text" class="form-control" id="title" placeholder="title..." required>
+            <p class="text-danger" ng-show="postForm.title.$error.required">A title is required</p>
             <label for="author" class="margin-top">Author</label>
-            <input ng-model="author" type="text" class="form-control" id="author" placeholder="author...">
+            <input ng-class='{invalid: postForm.author.$error.required}' name="author" ng-model="author" type="text" class="form-control" id="author" placeholder="author..." required>
+            <p class="text-danger" ng-show="postForm.author.$error.required">An author is required</p>
             <label for="image" class="margin-top">Image URL</label>
-            <input ng-model="image" type="text" class="form-control" id="image" placeholder="image url...">
+            <input ng-class='{invalid: postForm.image.$error.required}' name="image" ng-model="image" type="text" class="form-control" id="image" placeholder="image url..." required>
+            <p class="text-danger" ng-show="postForm.image.$error.required">An image URL is required</p>
             <label for="description" class="margin-top">Description</label>
-            <input ng-model="description" type="text" class="form-control" id="description" placeholder="description...">
-            <button ng-click="addPost()" class="btn btn-primary margin-top">Add Post</button>
+            <input ng-class='{invalid: postForm.description.$error.required}' name="description" ng-model="description" type="text" class="form-control" id="description" placeholder="description..." required>
+            <p class="text-danger" ng-show="postForm.description.$error.required">A description is required</p>
+            <button ng-disabled="postForm.$invalid" ng-click="addPost(postForm.$valid)" class="btn btn-primary margin-top">Add Post</button>
+          </form>
           </div>
         </div>
         <div class="row margin-top" ng-repeat='post in posts | filter: search'>
@@ -73,10 +79,11 @@
                  <h4>{{post.title}} | <i ng-click="post.votes = post.votes+1" class='glyphicon glyphicon-thumbs-up btn'></i> <i ng-click="post.votes = post.votes-1" class='glyphicon glyphicon-thumbs-down btn'></i> <span class='votes' ng-class='{red: post.votes < 0, green: post.votes > 0 }'>{{post.votes}}<span></h4>
                  <p class='pull-right text-warning'>By {{post.author}}</p>
                  <p class='clear'>{{post.description}}</p>
-                 <p><i class="glyphicon glyphicon-calendar"></i> {{post.time | date :'medium'}} | <i class="glyphicon glyphicon-comment"></i> {{post.comments.length}} <ng-pluralize count="post.comments.length"
+                 <p><i class="glyphicon glyphicon-calendar"></i> {{post.time | date :'medium'}} | <i ng-click="showComments()" class="glyphicon glyphicon-comment btn"></i> {{post.comments.length}} <ng-pluralize count="post.comments.length"
                   when="{'0': 'comments', 
                           '1': 'comment', 
-                          'other': 'comments'}"></ng-pluralize> | <i class="glyphicon glyphicon-pencil"></i> Add Comment</p>
+                          'other': 'comments'}"></ng-pluralize> | <i class="glyphicon glyphicon-pencil btn"></i> Add Comment</p>
+                  <p ng-show="comments" ng-repeat='comment in post.comments'><strong>{{comment.author}}</strong> said <span class='text-info'>"{{comment.content}}"</span></p> 
               </div>
             </div>
 

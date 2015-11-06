@@ -7,7 +7,7 @@
 }
 
 .post {
-  height: 200px;
+  height: 100%;
   width: 100%;
   border: solid 1px #000;
   border-radius: 10px;
@@ -28,13 +28,15 @@
 
 .glyphicon-thumbs-up, .glyphicon-thumbs-down {
   font-size: 20px;
-  padding: 0px;
-  margin-left: 5px;
-  margin-right: 5px;
 }
 
 .glyphicon.btn:hover {
-  color: #8c668c;
+  color: #fff;
+  background-color: #000;
+}
+
+.glyphicon {
+  padding: 0px;
 }
 
 .clear {
@@ -53,3 +55,10 @@
 .green {
   color: #637d49;
 }
+
+.invalid {
+  border-color: #e74c3c;
+}
+
+
+
