@@ -5,6 +5,7 @@
   <link rel='stylesheet' href='http://bootswatch.com/flatly/bootstrap.min.css'>
   <link rel='stylesheet' href='style.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Stoke' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
 </head>
@@ -35,11 +36,10 @@
           </form>
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By {{sortView}}<span class="caret"></span></a>
-              <ul class="dropdown-menu" ng-model="sortView">
-                <li value="votes" ng-click="sort = '-votes'"><a href="#">Votes</a></li>
-                <li ng-click="sort = time"><a href="#">Date</a></li>
-                <li><a href="#">Time</a></li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By {{selectedItem}}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li value="votes" ng-click="sort = '-votes'"><a ng-click="select('Votes')">Votes</a></li>
+                <li ng-click="sort = time"><a ng-click="select('Date')">Date</a></li>
               </ul>
             </li>
           </ul>
@@ -47,7 +47,7 @@
       </div>
     </nav>
     <div class="container">
-      <div ng-show='showForm' class="row margin-bottom">
+      <div ng-show='showForm' class="row margin-bottom showPostForm" ng-if="showForm">
         <div class="col-md-6 col-md-offset-3">
           <form name="postForm" novalidate>
             <h3 class="text-center text-info">Add a Post</h3>
@@ -76,15 +76,15 @@
                 </div>
               </div>
               <div class="col-md-9">
-                 <h4>{{post.title}} | <i ng-click="post.votes = post.votes+1" class='glyphicon glyphicon-thumbs-up btn'></i> <i ng-click="post.votes = post.votes-1" class='glyphicon glyphicon-thumbs-down btn'></i> <span class='votes' ng-class='{red: post.votes < 0, green: post.votes > 0 }'>{{post.votes}}<span></h4>
+                 <h4><strong class="text-info">{{post.title}}</strong> | <i ng-click="post.votes = post.votes+1" class='glyphicon glyphicon-thumbs-up btn'></i> <i ng-click="post.votes = post.votes-1" class='glyphicon glyphicon-thumbs-down btn'></i> <span class='votes' ng-class='{red: post.votes < 0, green: post.votes > 0 }'>{{post.votes}}<span></h4>
                  <p class='pull-right text-warning'>By {{post.author}}</p>
-                 <p class='clear'>{{post.description}}</p>
+                 <p>{{post.description}}</p>
                  <p><i class="glyphicon glyphicon-calendar"></i> {{post.time | date :'medium'}} | <i ng-click='thisComment = !thisComment' class="glyphicon glyphicon-comment btn" ></i> {{post.comments.length}} <ng-pluralize count="post.comments.length"
                   when="{'0': 'comments', 
                           '1': 'comment', 
                           'other': 'comments'}"></ng-pluralize> | <i ng-click='commentForm = !commentForm' class="glyphicon glyphicon-pencil btn"></i> Add Comment</p>
                   <p ng-show="thisComment" ng-model="thisComment" ng-if="thisComment" class="animate-if" ng-repeat='comment in post.comments'><strong>{{comment.author}}</strong> said <span class='text-info'>"{{comment.content}}"</span></p>
-                  <form name="addComment" ng-show="commentForm" novalidate>
+                  <form name="addComment" ng-show="commentForm" ng-if="commentForm" class="showCommentForm" novalidate>
                     <label> Name: <input ng-class='{commentInvalid: addComment.name.$invalid}' ng-model="commentAuthor" class="form-control" type="text" name="name" required> </label>
                     <label> Comment: <input ng-class='{commentInvalid: addComment.comment.$invalid}' ng-model="commentBody" class="form-control" type="text" name="comment" required> </label>
                     <button ng-disabled="addComment.$invalid" ng-click="submitComment()" class="btn btn-warning">Submit</button>
